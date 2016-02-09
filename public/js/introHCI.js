@@ -5,7 +5,7 @@ $(document).ready(function() {
 	initializePage();
 })
 
-$(".project a").click(function(e) {
+$(".project").click(function(e) {
 	var projectID = $(this).closest('.project').attr('id');
 	var idNumber = projectID.substr('project'.length);
 	$.get("/project/" + idNumber, addProject);
@@ -26,9 +26,8 @@ function initializePage() {
 }
 
 function addProject(result) {
-	console.log(result);
-	var projectHTML = '<img src="' + result['image'] + '" class="detailsImage img">' + '<h3>' + result['date'] + '</h3>' + result['summary']
-	$(".details").html(projectHTML);
+	var projectHTML = '<img src="' + result['image'] + '" class="detailsImage img">' + '<h3>' + result['date'] + '</h3>' + result['summary'];
+	$(".project div.details").eq(result['id']-1).html(projectHTML);
 }
 
 function addColor(result) {
